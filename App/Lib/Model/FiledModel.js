@@ -4,8 +4,10 @@
 
 module.exports = Model(function () {
     return {
-        getFiledList: function () {
-            return this.order('id').select().then(function (data) {
+        getFiledList: function (opt) {
+            var option ={};
+            extends(option,{'deleted':0,'valid':1},opt);
+            return this.where(option).order('id').select().then(function (data) {
                 return data;
             });
         },
